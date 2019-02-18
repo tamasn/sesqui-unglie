@@ -53,9 +53,12 @@ object Settings {
         "-Ywarn-unused:privates",            // Warn if a private member is unused.
         "-Ywarn-value-discard"               // Warn when non-Unit expression results are unused.
       )
+
+    lazy val base = Seq(
+        organization := "fun.ctions"
+    )
       
-    lazy val shared = Seq(
-        organization := "fun.ctions",
+    lazy val shared = base ++ Seq(
         scalaVersion := Versions.scala,
         crossScalaVersions := List("2.11.12", Versions.scala),
         scalacOptions ++= compilerOptions,

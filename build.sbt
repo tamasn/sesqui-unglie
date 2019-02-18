@@ -1,5 +1,13 @@
-val root = (project in file(".")).settings(
-    name := "sesqui-unglie",
-    crossScalaVersions := List("2.11.12", "2.12.8"),
-    scalacOptions += "-Ypartial-unification"
-)
+lazy val core = (project in file("core"))
+  .settings(Settings.shared)
+  .settings(name := "sesqui-unglie-core")
+
+lazy val string = (project in file("string"))
+  .settings(Settings.shared)
+  .settings(name := "sesqui-unglie-string")
+  .dependsOn(core)
+
+lazy val root = (project in file("."))
+  .settings(Settings.base)
+  .settings(name := "sesqui-unglie")
+  .aggregate(core, string)
